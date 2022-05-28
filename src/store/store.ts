@@ -1,10 +1,11 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import {
   persistStore, persistReducer, FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE,
-} from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+} from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
-import citiesReducer from './slice/cities.slice';
+import citiesReducer from './slice/cities.slice'
+import forecastReducer from './slice/forecast.slice'
 
 const persistConfig = {
   key: 'root',
@@ -13,6 +14,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   cities: citiesReducer,
+  forecast: forecastReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
