@@ -33,9 +33,14 @@ export class WeatherService {
     const {
       name, main, weather, coord: coordinates,
     } = data;
-    const status = weather[0].main;
+
+    const { main: status, description, icon } = weather[0];
     const temperature = TemperatureService.getInCelsius(main.temp);
 
-    return { name, coordinates, weather: { status, temperature } };
+    return {
+      name,
+      coordinates,
+      weather: { status, temperature, description, icon },
+    }
   }
 }
