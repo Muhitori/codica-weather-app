@@ -23,7 +23,7 @@ export const forecast = createSlice({
   name: 'forecast',
   initialState,
   reducers: {
-    clear() {
+    clearForecast() {
       return { forecastList: [] }
     }
   },
@@ -36,4 +36,5 @@ export const forecast = createSlice({
   },
 })
 
+export const { clearForecast } = forecast.actions
 export default forecast.reducer

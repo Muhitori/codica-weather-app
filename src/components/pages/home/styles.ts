@@ -6,13 +6,14 @@ const OFFSET = 3;
 const SEARCH_HEIGHT = 4;
 
 export const useStyles = makeStyles((theme: Theme) => ({
-  search: {
+  autocomplete: {
     width: '100%',
     position: 'sticky',
     height: theme.spacing(SEARCH_HEIGHT),
     top: theme.spacing(HEADER_HEIGHT + OFFSET),
+    zIndex: 1
   },
   listContainer: {
-    marginTop: theme.spacing(SEARCH_HEIGHT + OFFSET),
+    marginTop: theme.spacing(SEARCH_HEIGHT + OFFSET + 2),
   },
 }))

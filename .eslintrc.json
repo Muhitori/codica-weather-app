@@ -43,6 +43,9 @@
     "react/function-component-definition": 0,
     "arrow-body-style": 0,
     "import/no-unresolved": 0,
-    "react/jsx-no-useless-fragment": 0
+    "react/jsx-no-useless-fragment": 0,
+    "no-param-reassign": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/no-array-index-key": 0
   }
 }

@@ -3,6 +3,7 @@ import { createTheme } from '@mui/material';
 export const defaultTheme = createTheme({
   spacing: 6,
   palette: {
+    mode: 'light',
     primary: {
       main: '#03A9F4',
     },

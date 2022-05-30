@@ -1,18 +1,18 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CityService } from 'src/services/City.service';
 import { WeatherService } from 'src/services/Weather.service';
-import { City, Coordinates } from '../types/City';
+import { City, CityOption, Coordinates } from '../types/City';
 
-export const addCityAsync = createAsyncThunk(
-  'city/get-current-weather',
+
+export const getOptionsAsync = createAsyncThunk(
+  'city/get-options',
   async (name: string) => {
-    const coordinates = await CityService.getCoordinatesByName(name)
-    const currentWeather = await WeatherService.getCurrent(coordinates)
-    return currentWeather
+    const options = CityService.getOptions(name)
+    return options
   }
 )
 
-export const updateCityAsync = createAsyncThunk(
+export const setCityAsync = createAsyncThunk(
   'city/update-current-weather',
   async (coordinates: Coordinates) => {
     const currentWeather = await WeatherService.getCurrent(coordinates)
@@ -21,33 +21,46 @@ export const updateCityAsync = createAsyncThunk(
 )
 
 interface CitiesState {
-  [name: string]: City;
+  options: CityOption[]
+  cities: {
+    [name: string]: City
+  }
 }
 
-const initialState: CitiesState = {};
+const initialState: CitiesState = {
+  options: [],
+  cities: {},
+}
 
 export const cities = createSlice({
   name: 'cities',
   initialState,
   reducers: {
     deleteCity: (state, action: PayloadAction<string>) => {
-      // eslint-disable-next-line no-param-reassign
-      delete state[action.payload];
+      delete state.cities[action.payload]
+    },
+    clearOptions: (state) => {
+      state.options = []
     }
   },
   extraReducers: (builder) => {
 
-    builder.addCase(addCityAsync.fulfilled, (state, action) => {
-      const cityName = action.payload.name
-      return { ...state, [cityName]: action.payload }
+    builder.addCase(getOptionsAsync.fulfilled, (state, action) => {
+      return {
+        ...state,
+        options: action.payload,
+      }
     })
 
-    builder.addCase(updateCityAsync.fulfilled, (state, action) => {
+    builder.addCase(setCityAsync.fulfilled, (state, action) => {
       const cityName = action.payload.name
-      return { ...state, [cityName]: action.payload }
+      return {
+        ...state,
+        cities: { ...state.cities, [cityName]: action.payload },
+      }
     })
   }
 });
 
-export const { deleteCity } = cities.actions
+export const { deleteCity, clearOptions } = cities.actions
 export default cities.reducer;

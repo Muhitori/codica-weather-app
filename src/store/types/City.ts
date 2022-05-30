@@ -5,6 +5,19 @@ export interface Coordinates {
   lon: number
 }
 
+export interface CityOptionResponse {
+  name: string
+  country: string
+  lat: number
+  lon: number
+}
+
+
+export interface CityOption {
+  label: string;
+  value: Coordinates;
+}
+
 export interface City {
   name: string
   weather: Weather

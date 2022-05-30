@@ -7,13 +7,15 @@ const BASE_ULR = 'https://api.openweathermap.org/data/2.5/';
 
 export class WeatherService {
   static async getForecast({ lat, lon }: Coordinates) {
-    const { data: { list } } = await axios.get(`${BASE_ULR}/forecast`, {
+    const {
+      data: { list },
+    } = await axios.get(`${BASE_ULR}/forecast`, {
       params: {
         lat,
         lon,
         appId: process.env.REACT_APP_API_KEY,
       },
-    });
+    })
 
     const forecastList: Forecast[] = list.map((weather: ForecastWeatherResponse) =>
       ({ temperature: TemperatureService.getInCelsius(weather.main.temp), date: weather.dt_txt }));

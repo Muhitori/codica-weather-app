@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import { AppDispatch } from 'src/store';
-import { deleteCity, updateCityAsync } from 'src/store/slice/cities.slice';
+import { deleteCity, setCityAsync } from 'src/store/slice/cities.slice';
 import { City } from 'src/store/types/City'
 
 interface CityCardProps {
@@ -30,7 +30,7 @@ export const CityCard: FC<CityCardProps> = ({
   }
 
   const handleUpdate = () => {
-    dispatch(updateCityAsync(coordinates));
+    dispatch(setCityAsync(coordinates))
   }
 
   const handleDelete = () => {

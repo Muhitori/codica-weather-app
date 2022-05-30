@@ -10,14 +10,17 @@ import forecastReducer from './slice/forecast.slice'
 const persistConfig = {
   key: 'root',
   storage,
+  blackList: ['cities.options']
 };
+
+
 
 const rootReducer = combineReducers({
   cities: citiesReducer,
-  forecast: forecastReducer
-});
+  forecast: forecastReducer,
+})
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig,  rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
