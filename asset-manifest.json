@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/codica-weather-app/static/css/main.8a685450.css",
-    "main.js": "/codica-weather-app/static/js/main.20a45f4c.js",
+    "main.js": "/codica-weather-app/static/js/main.5444ce61.js",
     "static/js/787.d74b5d4c.chunk.js": "/codica-weather-app/static/js/787.d74b5d4c.chunk.js",
     "index.html": "/codica-weather-app/index.html",
     "main.8a685450.css.map": "/codica-weather-app/static/css/main.8a685450.css.map",
-    "main.20a45f4c.js.map": "/codica-weather-app/static/js/main.20a45f4c.js.map",
+    "main.5444ce61.js.map": "/codica-weather-app/static/js/main.5444ce61.js.map",
     "787.d74b5d4c.chunk.js.map": "/codica-weather-app/static/js/787.d74b5d4c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.8a685450.css",
-    "static/js/main.20a45f4c.js"
+    "static/js/main.5444ce61.js"
   ]
 }
