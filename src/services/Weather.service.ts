@@ -6,7 +6,7 @@ import { TemperatureService } from './Temperature.service';
 const BASE_ULR = 'https://api.openweathermap.org/data/2.5/';
 
 export class WeatherService {
-  static async getForecast({ lat, lon }: Coordinates) {
+  static async getForecast({ lat, lon }: Coordinates): Promise<Forecast[]> {
     const {
       data: { list },
     } = await axios.get(`${BASE_ULR}/forecast`, {
@@ -17,8 +17,21 @@ export class WeatherService {
       },
     })
 
-    const forecastList: Forecast[] = list.map((weather: ForecastWeatherResponse) =>
-      ({ temperature: TemperatureService.getInCelsius(weather.main.temp), date: weather.dt_txt }));
+    const cutList = list.filter(
+      (weather: ForecastWeatherResponse, index: number) => index <= 20
+    )
+
+    const forecastList: Forecast[] = cutList.map(
+      (weather: ForecastWeatherResponse) => {
+        const { temp_max, temp_min, temp } = weather.main
+
+        const min = TemperatureService.getInCelsius(temp_min)
+        const current = TemperatureService.getInCelsius(temp)
+        const max = TemperatureService.getInCelsius(temp_max)
+
+        return { temperature: { min, current, max }, date: weather.dt_txt }
+      }
+    )
 
     return forecastList;
   }

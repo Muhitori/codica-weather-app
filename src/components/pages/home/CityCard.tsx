@@ -1,7 +1,8 @@
 import { Card, CardMedia, Box, CardContent, Typography, CardActions, Button, CardActionArea } from '@mui/material';
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
+import { TemperatureService } from 'src/services/Temperature.service';
 import { AppDispatch } from 'src/store';
 import { deleteCity, setCityAsync } from 'src/store/slice/cities.slice';
 import { City } from 'src/store/types/City'
@@ -37,6 +38,8 @@ export const CityCard: FC<CityCardProps> = ({
     dispatch(deleteCity(name))
   }
 
+  const temperatureLabel = useMemo(() => TemperatureService.getLabel(temperature), [temperature])
+
   return (
     <Card sx={{ marginBottom: 4 }}>
       <CardActionArea
@@ -57,7 +60,7 @@ export const CityCard: FC<CityCardProps> = ({
           <CardContent sx={{ flexGrow: 1 }}>
             <Typography mb={1} variant="h5">{`${name}`}</Typography>
             <Typography mb={1} variant="h3">
-              {`${temperature} ℃`}
+              {temperatureLabel}
             </Typography>
             <Typography mb={1} variant="body1" color="text.secondary">
               {`${status},${description}`}

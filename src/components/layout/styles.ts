@@ -9,4 +9,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     position: 'sticky',
     height: theme.spacing(HEADER_HEIGHT),
   },
+  content: {
+    height: `calc(100vh - ${theme.spacing(HEADER_HEIGHT)})`,
+  },
 }))

@@ -10,7 +10,9 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <AppBar className={classes.appBar} />
-      <Box mt={HEADER_HEIGHT}>{children}</Box>
+      <Box className={classes.content} mt={HEADER_HEIGHT}>
+        {children}
+      </Box>
     </>
   )
 }

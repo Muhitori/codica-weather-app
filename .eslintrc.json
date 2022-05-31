@@ -37,7 +37,7 @@
         "tsx": "never"
       }
     ],
-    "linebreak-style": "warn",
+    "linebreak-style": 0,
     "import/prefer-default-export": 0,
     "react/react-in-jsx-scope": 0,
     "react/function-component-definition": 0,
@@ -46,6 +46,7 @@
     "react/jsx-no-useless-fragment": 0,
     "no-param-reassign": 0,
     "react/jsx-props-no-spreading": 0,
-    "react/no-array-index-key": 0
+    "react/no-array-index-key": 0,
+    "camelcase": 0
   }
 }
