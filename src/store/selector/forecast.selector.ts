@@ -1,3 +1,4 @@
-import { RootState } from '../store'
+import { RootState } from '../store';
 
-export const forecastListSelector = (state: RootState) => state.forecast.forecastList
+export const forecastListSelector = (state: RootState) =>
+  state.forecast.forecastList;

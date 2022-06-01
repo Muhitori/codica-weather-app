@@ -1,17 +1,16 @@
-import { Weather } from './Weather'
+import { Weather } from './Weather';
 
 export interface Coordinates {
-  lat: number
-  lon: number
+  lat: number;
+  lon: number;
 }
 
 export interface CityOptionResponse {
-  name: string
-  country: string
-  lat: number
-  lon: number
+  name: string;
+  country: string;
+  lat: number;
+  lon: number;
 }
-
 
 export interface CityOption {
   label: string;
@@ -19,7 +18,7 @@ export interface CityOption {
 }
 
 export interface City {
-  name: string
-  weather: Weather
-  coordinates: Coordinates
+  name: string;
+  weather: Weather;
+  coordinates: Coordinates;
 }

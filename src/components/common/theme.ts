@@ -37,4 +37,4 @@ export const defaultTheme = createTheme({
       fontWeight: 400,
     },
   },
-})
+});

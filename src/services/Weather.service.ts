@@ -15,23 +15,24 @@ export class WeatherService {
         lon,
         appId: process.env.REACT_APP_API_KEY,
       },
-    })
+    });
 
+    // take first 20 elements
     const cutList = list.filter(
       (weather: ForecastWeatherResponse, index: number) => index <= 20
-    )
+    );
 
     const forecastList: Forecast[] = cutList.map(
       (weather: ForecastWeatherResponse) => {
-        const { temp_max, temp_min, temp } = weather.main
+        const { temp_max, temp_min, temp } = weather.main;
 
-        const min = TemperatureService.getInCelsius(temp_min)
-        const current = TemperatureService.getInCelsius(temp)
-        const max = TemperatureService.getInCelsius(temp_max)
+        const min = TemperatureService.getInCelsius(temp_min);
+        const current = TemperatureService.getInCelsius(temp);
+        const max = TemperatureService.getInCelsius(temp_max);
 
-        return { temperature: { min, current, max }, date: weather.dt_txt }
+        return { temperature: { min, current, max }, date: weather.dt_txt };
       }
-    )
+    );
 
     return forecastList;
   }
@@ -45,9 +46,7 @@ export class WeatherService {
       },
     });
 
-    const {
-      name, main, weather, coord: coordinates,
-    } = data;
+    const { name, main, weather, coord: coordinates } = data;
 
     const { main: status, description, icon } = weather[0];
     const temperature = TemperatureService.getInCelsius(main.temp);
@@ -56,6 +55,6 @@ export class WeatherService {
       name,
       coordinates,
       weather: { status, temperature, description, icon },
-    }
+    };
   }
 }

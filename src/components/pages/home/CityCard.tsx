@@ -1,44 +1,55 @@
-import { Card, CardMedia, Box, CardContent, Typography, CardActions, Button, CardActionArea } from '@mui/material';
-import { FC, useMemo } from 'react'
+import {
+  Card,
+  CardMedia,
+  Box,
+  CardContent,
+  Typography,
+  CardActions,
+  Button,
+  CardActionArea,
+} from '@mui/material';
+import { FC, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import { TemperatureService } from 'src/services/Temperature.service';
 import { AppDispatch } from 'src/store';
 import { deleteCity, setCityAsync } from 'src/store/slice/cities.slice';
-import { City } from 'src/store/types/City'
+import { City } from 'src/store/types/City';
 
 interface CityCardProps {
-  city: City
+  city: City;
 }
-
 
 const getIconUrl = (icon: string) => {
-  return `https://openweathermap.org/img/wn/${icon}@4x.png`
-}
+  return `https://openweathermap.org/img/wn/${icon}@4x.png`;
+};
 
 export const CityCard: FC<CityCardProps> = ({
   city: {
     name,
     weather: { status, temperature, description, icon },
-    coordinates
-  }
+    coordinates,
+  },
 }) => {
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const onCardClick = () => {
-    navigate(`${process.env.PUBLIC_URL}/${name}`)
-  }
+    navigate(`${process.env.PUBLIC_URL}/${name}`);
+  };
 
   const handleUpdate = () => {
-    dispatch(setCityAsync(coordinates))
-  }
+    dispatch(setCityAsync(coordinates));
+  };
 
   const handleDelete = () => {
-    dispatch(deleteCity(name))
-  }
+    dispatch(deleteCity(name));
+  };
 
-  const temperatureLabel = useMemo(() => TemperatureService.getLabel(temperature), [temperature])
+  const temperatureLabel = useMemo(
+    () => TemperatureService.getLabel(temperature),
+    [temperature]
+  );
 
   return (
     <Card sx={{ marginBottom: 4 }}>
@@ -77,5 +88,5 @@ export const CityCard: FC<CityCardProps> = ({
         </Button>
       </CardActions>
     </Card>
-  )
-}
+  );
+};

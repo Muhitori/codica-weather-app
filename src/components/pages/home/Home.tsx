@@ -1,20 +1,20 @@
 import { useSelector } from 'react-redux';
 import { citiesSelector } from 'src/store/selector/cities.selector';
-import { Box, Grid } from '@mui/material'
+import { Box, Grid } from '@mui/material';
 import { useState } from 'react';
 import { CityList } from './CityList';
-import { CityAutocomplete } from './CityAutocomplete'
+import { CityAutocomplete } from './CityAutocomplete';
 import { useStyles } from './styles';
 
 export const Home = () => {
-  const classes = useStyles()
-  
+  const classes = useStyles();
+
   const cities = useSelector(citiesSelector);
   const [isFocused, setIsFocused] = useState(false);
 
   const toggleIsFocused = () => {
     setIsFocused(!isFocused);
-  }
+  };
 
   return (
     <Grid container justifyContent="center">
@@ -28,5 +28,5 @@ export const Home = () => {
         </Box>
       </Grid>
     </Grid>
-  )
+  );
 };

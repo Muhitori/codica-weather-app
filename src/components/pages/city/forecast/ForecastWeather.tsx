@@ -1,20 +1,27 @@
-import React, { useMemo } from 'react'
-import { Box, Tooltip, Typography } from '@mui/material'
-import { Forecast } from 'src/store/types/Weather'
-import { TemperatureService } from 'src/services/Temperature.service'
+import React, { useMemo } from 'react';
+import { Box, Tooltip, Typography } from '@mui/material';
+import { Forecast } from 'src/store/types/Weather';
+import { TemperatureService } from 'src/services/Temperature.service';
 
 const getGradient = (temperature: number) => {
-  return `linear-gradient(0deg, #FFF 0%, rgb(${temperature * 10},200,200) 100%)`
-}
+  return `linear-gradient(0deg, #FFF 0%, rgb(${
+    temperature * 10
+  },200,200) 100%)`;
+};
 
 interface ForecastProps {
-  forecast: Forecast
+  forecast: Forecast;
 }
-export const ForecastWeather: React.FC<ForecastProps> = ({ forecast: { temperature: { current }, date } }) => {
+export const ForecastWeather: React.FC<ForecastProps> = ({
+  forecast: {
+    temperature: { current },
+    date,
+  },
+}) => {
   const temperatureLabel = useMemo(
     () => TemperatureService.getLabel(current),
     [current]
-  )
+  );
 
   return (
     <Tooltip title={date}>
@@ -32,5 +39,5 @@ export const ForecastWeather: React.FC<ForecastProps> = ({ forecast: { temperatu
         <Typography>{temperatureLabel}</Typography>
       </Box>
     </Tooltip>
-  )
-}
+  );
+};

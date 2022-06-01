@@ -16,5 +16,5 @@ export const RootRouter = () => {
         </Routes>
       </Layout>
     </Router>
-  )
+  );
 };

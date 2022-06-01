@@ -1,44 +1,47 @@
-import {
-  Autocomplete,
-  TextField,
-} from '@mui/material'
+import { Autocomplete, TextField } from '@mui/material';
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from 'src/store';
-import { clearOptions, getOptionsAsync, setCityAsync } from 'src/store/slice/cities.slice';
+import {
+  clearOptions,
+  getOptionsAsync,
+  setCityAsync,
+} from 'src/store/slice/cities.slice';
 import { optionsSelector } from 'src/store/selector/cities.selector';
 import { CityOption } from 'src/store/types/City';
 import { useStyles } from './styles';
 
 interface CitySearchProps {
-  toggleIsFocused: () => void
+  toggleIsFocused: () => void;
 }
 
-export const CityAutocomplete: React.FC<CitySearchProps> = ({ toggleIsFocused }) => {
-  const classes = useStyles()
-  const dispatch = useDispatch<AppDispatch>()
-  const [cityName, setCityName] = useState<string>('')
+export const CityAutocomplete: React.FC<CitySearchProps> = ({
+  toggleIsFocused,
+}) => {
+  const classes = useStyles();
+  const dispatch = useDispatch<AppDispatch>();
+  const [cityName, setCityName] = useState<string>('');
   const autocompleteRef = useRef();
 
   const options = useSelector(optionsSelector);
 
   useEffect(() => {
-    dispatch(clearOptions())
-  }, [])
+    dispatch(clearOptions());
+  }, []);
 
   const onCityNameChange = (name: string) => {
     if (name.trim()) {
-      dispatch(getOptionsAsync(name))
-      setCityName(name)
+      dispatch(getOptionsAsync(name));
+      setCityName(name);
     } else {
-      dispatch(clearOptions())
+      dispatch(clearOptions());
     }
-  }
+  };
 
   const handleSelect = (cityOption: CityOption) => {
-    dispatch(setCityAsync(cityOption.value))
-    setCityName('')
-  }
+    dispatch(setCityAsync(cityOption.value));
+    setCityName('');
+  };
 
   return (
     <Autocomplete
@@ -60,7 +63,7 @@ export const CityAutocomplete: React.FC<CitySearchProps> = ({ toggleIsFocused })
           <li {...props} key={`${label}${lat}${lon}`}>
             {label}
           </li>
-        )
+        );
       }}
       renderInput={(params) => (
         <TextField
@@ -73,5 +76,5 @@ export const CityAutocomplete: React.FC<CitySearchProps> = ({ toggleIsFocused })
         />
       )}
     />
-  )
-}
+  );
+};

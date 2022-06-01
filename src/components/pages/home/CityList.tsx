@@ -9,10 +9,10 @@ interface CityListProps {
 export const CityList: FC<CityListProps> = ({ cities }) => {
   return (
     <>
-      {!!cities.length && cities.map((city, index) => (
-        <CityCard key={`${city.name}${index}`} city={city} />
-      ))}
+      {!!cities.length &&
+        cities.map((city, index) => (
+          <CityCard key={`${city.name}${index}`} city={city} />
+        ))}
     </>
-  )
+  );
 };
-

@@ -4,7 +4,6 @@ export class TemperatureService {
     return Number(celsius.toFixed(1));
   };
 
-  static getLabel = (temperature: number) => 
-    temperature > 0 ? `+${temperature} ℃` : `${temperature} ℃`
-  
+  static getLabel = (temperature: number) =>
+    temperature > 0 ? `+${temperature} ℃` : `${temperature} ℃`;
 }

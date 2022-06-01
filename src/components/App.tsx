@@ -15,7 +15,7 @@ const App = () => {
         </ThemeProvider>
       </PersistGate>
     </Provider>
-  )
+  );
 };
 
 export default App;

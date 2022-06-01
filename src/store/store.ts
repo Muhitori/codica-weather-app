@@ -1,34 +1,40 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import {
-  persistStore, persistReducer, FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE,
-} from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+  persistStore,
+  persistReducer,
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-import citiesReducer from './slice/cities.slice'
-import forecastReducer from './slice/forecast.slice'
+import citiesReducer from './slice/cities.slice';
+import forecastReducer from './slice/forecast.slice';
 
 const persistConfig = {
   key: 'root',
   storage,
-  blackList: ['cities.options']
+  blackList: ['cities.options'],
 };
-
-
 
 const rootReducer = combineReducers({
   cities: citiesReducer,
   forecast: forecastReducer,
-})
+});
 
-const persistedReducer = persistReducer(persistConfig,  rootReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  }),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
 export const persistor = persistStore(store);
