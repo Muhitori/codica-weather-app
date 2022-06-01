@@ -12,8 +12,8 @@ import { ForecastContainer } from './forecast/ForecastContainer';
 export const City = () => {
   const dispatch = useDispatch<AppDispatch>()
 
-  const { cityName } = useParams();
-  const city = useSelector(citySelector(cityName));
+  const params = useParams();
+  const city = useSelector(citySelector(params.cityName))
   const forecastList = useSelector(forecastListSelector);
 
   const temperatureLabel = useMemo(

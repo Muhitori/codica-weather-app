@@ -13,7 +13,7 @@ interface CityCardProps {
 
 
 const getIconUrl = (icon: string) => {
-  return `http://openweathermap.org/img/wn/${icon}@4x.png`
+  return `https://openweathermap.org/img/wn/${icon}@4x.png`
 }
 
 export const CityCard: FC<CityCardProps> = ({
@@ -27,7 +27,7 @@ export const CityCard: FC<CityCardProps> = ({
   const navigate = useNavigate();
 
   const onCardClick = () => {
-    navigate(`/${name}`);
+    navigate(`${process.env.PUBLIC_URL}/${name}`)
   }
 
   const handleUpdate = () => {

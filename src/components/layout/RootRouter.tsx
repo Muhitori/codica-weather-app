@@ -8,8 +8,11 @@ export const RootRouter = () => {
     <Router>
       <Layout>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/:cityName" element={<City />} />
+          <Route path={`${process.env.PUBLIC_URL}`} element={<Home />} />
+          <Route
+            path={`${process.env.PUBLIC_URL}/:cityName`}
+            element={<City />}
+          />
         </Routes>
       </Layout>
     </Router>

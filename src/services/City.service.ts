@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { CityOption, CityOptionResponse, Coordinates } from 'src/store/types/City';
 
-const BASE_ULR = 'http://api.openweathermap.org/geo/1.0/direct';
+const BASE_ULR = 'https://api.openweathermap.org/geo/1.0/direct';
 const CITIES_LIMIT = 5
 
 export class CityService {
